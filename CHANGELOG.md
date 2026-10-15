@@ -8,5 +8,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.10.1] - 2026-10-15
 
 ### Changed
-- Package renamed from `jonathanpmartins/staysvel` to `ownerpro/staysvel`, and the repository moved to `https://github.com/OwnerPro-Software/staysvel`. Consumers must replace `jonathanpmartins/staysvel` with `ownerpro/staysvel` in their `require`. The `Staysvel\` namespace and the public API are unchanged. The old Packagist package is abandoned in favor of the new one, which starts at this release.
+- Package renamed from `jonathanpmartins/staysvel` to `ownerpro/staysvel`, and the repository moved to `https://github.com/OwnerPro-Software/staysvel`. Consumers must replace `jonathanpmartins/staysvel` with `ownerpro/staysvel` in their `require`. The `Staysvel\` namespace and the public API are unchanged. The old Packagist package is abandoned in favor of the new one, which lists every release from 1.0.0 onward.
 - `composer.json` no longer carries a `version` field: the git tag is the source of truth for releases.
