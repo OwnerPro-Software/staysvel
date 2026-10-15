@@ -1,14 +1,18 @@
 {
-    "name": "jonathanpmartins/staysvel",
+    "name": "ownerpro/staysvel",
     "description": "Laravel Package for integration with Stays External API.",
     "license": "MIT",
-    "version": "1.10.0",
     "authors": [
         {
             "name": "Jonathan Martins",
             "email": "web@jonathanmartins.com.br"
         }
     ],
+    "homepage": "https://github.com/OwnerPro-Software/staysvel",
+    "support": {
+        "issues": "https://github.com/OwnerPro-Software/staysvel/issues",
+        "source": "https://github.com/OwnerPro-Software/staysvel"
+    },
     "keywords": [
         "stays",
         "api",

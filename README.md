@@ -7,7 +7,7 @@ Laravel Package for integration with [Stays](https://stays.net/) External API. D
 # How to install
 
 ```shell
-composer require jonathanpmartins/staysvel;
+composer require ownerpro/staysvel;
 ```
 
 Add the following code to your `config\services.php` configuration file:

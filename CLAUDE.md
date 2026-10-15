@@ -98,6 +98,14 @@ Consumers set in `config/services.php`:
 
 Tests override these in `TestCase::setUp()` with dummy values and `https://api.stays.net`.
 
+## Releasing
+
+Published on Packagist as `ownerpro/staysvel` (repo `OwnerPro-Software/staysvel`;
+the old `jonathanpmartins/staysvel` is abandoned). The git tag is the version:
+`composer.json` has no `version` field, so there is no "bump version" commit. Add a
+`CHANGELOG.md` entry, push an annotated `vX.Y.Z` tag, and create the GitHub release
+from that entry; the Packagist webhook picks the tag up.
+
 ## Conventions
 
 - PSR-4: `Staysvel\` → `src/`, `Tests\` → `tests/`.
