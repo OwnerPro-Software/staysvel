@@ -2,6 +2,8 @@
 
 namespace Staysvel;
 
+use Closure;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Client\Response;
 use Staysvel\Lib\Booking;
 use Staysvel\Lib\Calendar;
@@ -12,6 +14,7 @@ use Staysvel\Lib\Price;
 use Staysvel\Lib\Review;
 use Staysvel\Lib\Setting;
 use Staysvel\Lib\Translation;
+use Throwable;
 
 class Stays
 {
@@ -30,6 +33,21 @@ class Stays
         self::$connectTimeout = $connectTimeoutInSeconds;
 
         return new static;
+    }
+
+    /**
+     * Registers, once for the whole process, what the SDK throws when Stays
+     * cannot be reached (timeout, refused connection, DNS failure). The hook
+     * receives the ConnectionException, the HTTP verb (GET, POST, PATCH or
+     * DELETE) and the request URI as the SDK sends it (e.g. /content/listings/123),
+     * and returns the exception to be thrown in its place. Pass null to remove
+     * the hook and let the ConnectionException escape again.
+     *
+     * @param (Closure(ConnectionException, string, string): Throwable)|null $callback
+     */
+    public static function whenUnreachable(?Closure $callback): void
+    {
+        Http::whenUnreachable($callback);
     }
 
     public static function bookRequest(array $parameters = []): Response

@@ -97,6 +97,25 @@ $response = Stays::content()->timeout(30)->properties()->create(array $parameter
 $response = Stays::content()->properties()->timeout(30)->create(array $parameters);
 ```
 
+# Connection failures
+
+When Stays does not answer (timeout, refused connection or DNS failure) the SDK lets the Laravel HTTP client's `Illuminate\Http\Client\ConnectionException` escape. To throw an exception of your own instead, register a hook once, for instance in a service provider's `boot()`:
+```php
+use Illuminate\Http\Client\ConnectionException;
+use Staysvel\Stays;
+
+Stays::whenUnreachable(
+    function (ConnectionException $connectionException, string $method, string $uri): Throwable {
+        return new PmsUnreachable("Stays did not answer $method $uri", previous: $connectionException);
+    }
+);
+```
+
+- The hook receives the original exception, the HTTP verb (`GET`, `POST`, `PATCH` or `DELETE`) and the URI as the SDK sends it, without the endpoint or the `/external/v1` prefix (e.g. `/content/listings/123`).
+- Whatever the hook returns is thrown in place of the `ConnectionException`. It covers every call of the SDK, including the XLSX export.
+- The hook is static, so it is valid for the whole process. `Stays::whenUnreachable(null)` removes it (useful in tests).
+- Without a hook nothing changes: the `ConnectionException` is thrown as before.
+
 
 # Table of Contents
 
